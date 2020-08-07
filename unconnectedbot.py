@@ -7,9 +7,10 @@ import datetime
 from datetime import timezone, tzinfo, timedelta
 import time
 import time as timeModule
+from discord.utils import get
 
 client = discord.Client()
-Client = commands.Bot(command_prefix = '.')
+Client = commands.Bot(command_prefix = ')')
 
 on = discord.Status.online
 dnd = discord.Status.dnd
@@ -43,10 +44,25 @@ async def on_message(message):
     
     statut = message.author.status
     
+    if message.content.startswith(')help'):
+        await message.channel.send("This bot only got one command and it's ``)createrole`` \nOnly admins can use this command")
+
+    if message.content.startswith(')createrole'):
+        if user.guild_permissions.administrator:
+            if get(message.guild.roles, name = 'AllowUnconnected'):
+                await message.channel.send("There is already a role with this name in your role list")
+            else :
+                await message.guild.create_role(name='AllowUnconnected')
+                await message.channel.send("Done :white_check_mark: \nPlease, set the role on top of the role list")
+        else :
+            return
+    
     if statut is discord.Status.offline:
         if userid == int(341257685901246466):
             return
         elif user.guild_permissions.administrator:
+            return
+        elif get(user.roles, name = 'AllowUnconnected'):
             return
         else:
             await message.delete()
