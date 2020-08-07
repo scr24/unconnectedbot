@@ -19,7 +19,7 @@ inv = discord.Status.offline
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game(name='Delete invisible message'),
+    await client.change_presence(activity=discord.Game(name=')help'),
                                  status=dnd)
     for member in client.get_all_members():
         print(member, member.status)
@@ -45,7 +45,7 @@ async def on_message(message):
     statut = message.author.status
     
     if message.content.startswith(')help'):
-        await message.channel.send("This bot only got one command and it's ``)createrole`` \nOnly admins can use this command")
+        await message.channel.send("The utility of this bot is to avoid members to text in invisible/offline mode in your server.\n\nHe only got one command, the ``)createrole``. His function is to create role (as indicated by his name) named "AllowUnconnected". The members who got this role could send text messages in offline mode like admins.\nOnly admins can use this command and can give the role to any member of the server.")
 
     if message.content.startswith(')createrole'):
         if user.guild_permissions.administrator:
@@ -53,7 +53,7 @@ async def on_message(message):
                 await message.channel.send("There is already a role with this name in your role list")
             else :
                 await message.guild.create_role(name='AllowUnconnected')
-                await message.channel.send("Done :white_check_mark: \nPlease, set the role on top of the role list")
+                await message.channel.send("Done :white_check_mark: \nYou can delete this role anytime and change color and permissions.")
         else :
             return
     
