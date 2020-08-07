@@ -45,7 +45,7 @@ async def on_message(message):
     statut = message.author.status
     
     if message.content.startswith(')help'):
-        await message.channel.send("The utility of this bot is to avoid members to text in invisible/offline mode in your server.\n\nHe only got one command, the ``)createrole``. His function is to create role (as indicated by his name) named "AllowUnconnected". The members who got this role could send text messages in offline mode like admins.\nOnly admins can use this command and can give the role to any member of the server.")
+        await message.channel.send('The utility of this bot is to avoid members to text in invisible/offline mode in your server.\n\nHe only got one command, the ``)createrole``. His function is to create role (as indicated by his name) named "AllowUnconnected". The members who got this role could send text messages in offline mode like admins.\nOnly admins can use this command and can give the role to any member of the server.')
 
     if message.content.startswith(')createrole'):
         if user.guild_permissions.administrator:
