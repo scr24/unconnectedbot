@@ -23,6 +23,13 @@ async def on_ready():
                                  status=dnd)
     for member in client.get_all_members():
         print(member, member.status)
+        
+@client.event
+async def on_guild_join(guild):
+    for channel in guild.text_channels:
+        if channel.permissions_for(guild.me).send_messages:
+            await channel.send("Hi administrator of this server.\n\nI made my own server to help you if you need it, and to notify you of upcoming updates.\nYou can join my server with this link : https://discord.gg/gqfFqJp \n\nCordially : Creator of this bot.")
+        break
 
 
 @client.event
