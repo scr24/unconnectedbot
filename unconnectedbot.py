@@ -23,7 +23,7 @@ async def on_ready():
                                  status=dnd)
     for member in client.get_all_members():
         print(member, member.status)
-        
+
 @client.event
 async def on_guild_join(guild):
     for channel in guild.text_channels:
@@ -50,17 +50,75 @@ async def on_message(message):
     messagecontent = message.content
     
     statut = message.author.status
+
+    embed = discord.Embed()
     
     if message.content.startswith(')help'):
-        await message.channel.send('The utility of this bot is to avoid members to text in invisible/offline mode in your server.\n\nHe only got one command, the ``)createrole``. His function is to create role (as indicated by his name) named "AllowUnconnected". The members who got this role could send text messages in offline mode like admins.\nOnly admins can use this command and can give the role to any member of the server.')
+        embed = discord.Embed(title = "Help Command",
+                                  description = "The list of all commands available for users and/or admins.",
+                                  colour = discord.Colour.purple()
+                                  )
+        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+                         text = "JeSuisUnBonWhisky#1688")
+        embed.set_author (name = "Unconnected Bot#8157",
+                          icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
+        embed.add_field(name = ")help",
+                        value = "This command. Show you the availables commands.\n**Can be used by all users**",
+                        inline = False)
+        embed.add_field(name = ")invite",
+                        value = "Show all links that may be useful (for you and for me).\n**Can be used by all users**",
+                        inline = False)
+        embed.add_field(name = ")createrole",
+                        value = 'Create a role named "AllowUnconnected" to give users the possibility of being able to speak on the server.\n**__Only admins__ can use this command and give the role to users**',
+                        inline = False)
+        
+        await message.channel.send(embed = embed)
+    
+    if message.content.startswith(')invite'):
+        embed = discord.Embed(title="Join author's server here",
+                              url='https://discord.gg/gqfFqJp',
+                              description="For management, ideas I can code and others things to have a better bot",
+                              colour = discord.Colour.purple()
+                              )
+        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+                         text = "JeSuisUnBonWhisky#1688")
+        embed.set_author (name = "Unconnected Bot#8157",
+                          icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
+        embed.add_field(name = "Add me to your server",
+                        value = "[Click here to invite me \non your server](https://discord.com/oauth2/authorize?client_id=543924044110626826&permissions=8&scope=bot)",
+                        inline = True)
+        embed.add_field(name = "Vote me please",
+                        value = "[You can vote me up on top.gg by \nclicking on this link](https://top.gg/bot/543924044110626826/vote)",
+                        inline = True)
+    
+        await message.channel.send(embed = embed)
 
     if message.content.startswith(')createrole'):
         if user.guild_permissions.administrator:
             if get(message.guild.roles, name = 'AllowUnconnected'):
-                await message.channel.send("There is already a role with this name in your role list")
+                embed = discord.Embed(title="Create role :no_entry_sign:",
+                              description='**You already have a role named "__AllowUnconnected__". You can already give this role to whoever you want**',
+                              colour = discord.Colour.red()
+                              )
+                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+                         text = "JeSuisUnBonWhisky#1688")
+                embed.set_author (name = "Unconnected Bot#8157",
+                                  icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
+
+                await message.channel.send(embed = embed)
+        
             else :
                 await message.guild.create_role(name='AllowUnconnected')
-                await message.channel.send("Done :white_check_mark: \nYou can delete this role anytime and change color and permissions.")
+                embed = discord.Embed(title="Create role :white_check_mark:",
+                              description='**The role "__AllowUnconnected__" has been created. You can now give this role to whoever you want so they can speak offline**',
+                              colour = discord.Colour.green()
+                              )
+                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+                         text = "JeSuisUnBonWhisky#1688")
+                embed.set_author (name = "Unconnected Bot#8157",
+                                  icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
+
+                await message.channel.send(embed = embed)
         else :
             return
     
