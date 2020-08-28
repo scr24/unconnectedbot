@@ -91,7 +91,7 @@ async def on_message(message):
                          text = "JeSuisUnBonWhisky#1688")
         embed.set_author (name = "Unconnected Bot#8157",
                           icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
-        embed.add_field(name = ")help",
+        embed.add_field(name = "TopGG Page",
                         value = "[You can click on this link to see the bot page](https://top.gg/bot/543924044110626826)",
                         inline = False)
         embed.set_image(url = "https://top.gg/api/widget/543924044110626826.png?usernamecolor=ffffff")
