@@ -2,15 +2,17 @@ import discord
 import time
 import asyncio
 from discord.ext.commands import Bot
-from discord.ext import commands
+from discord.ext import commands, tasks
 import datetime
 from datetime import timezone, tzinfo, timedelta
-import time
 import time as timeModule
 from discord.utils import get
+import os
+import dbl
+import logging
 
-client = discord.Client()
-Client = commands.Bot(command_prefix = ')')
+
+client = commands.Bot(command_prefix = ')')
 
 on = discord.Status.online
 dnd = discord.Status.dnd
@@ -21,8 +23,9 @@ inv = discord.Status.offline
 async def on_ready():
     await client.change_presence(activity=discord.Game(name=')help'),
                                  status=dnd)
-    for member in client.get_all_members():
-        print(member, member.status)
+    #for member in client.get_all_members():
+    #    print(member, member.status)
+    print("bot ready !!")
 
 @client.event
 async def on_guild_join(guild):
@@ -73,6 +76,26 @@ async def on_message(message):
                         inline = False)
         
         await message.channel.send(embed = embed)
+
+        
+
+    if message.content.startswith(')stats'):
+        embed = discord.Embed(title = "Stats Command",
+                                  description = "They are the stats of my bot",
+                                  colour = discord.Colour.purple()
+                                  )
+        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+                         text = "JeSuisUnBonWhisky#1688")
+        embed.set_author (name = "Unconnected Bot#8157",
+                          icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
+        embed.add_field(name = ")help",
+                        value = "[You can click on this link to see the bot page](https://top.gg/bot/543924044110626826)",
+                        inline = False)
+        embed.set_image(url = "https://top.gg/api/widget/543924044110626826.png")
+
+        await message.channel.send(embed = embed)
+
+        
     
     if message.content.startswith(')invite'):
         embed = discord.Embed(title="Join author's server here",
@@ -92,6 +115,8 @@ async def on_message(message):
                         inline = True)
     
         await message.channel.send(embed = embed)
+
+        
 
     if message.content.startswith(')createrole'):
         if user.guild_permissions.administrator:
@@ -121,6 +146,9 @@ async def on_message(message):
                 await message.channel.send(embed = embed)
         else :
             return
+
+
+        
     
     if statut is discord.Status.offline:
         if userid == int(341257685901246466):
@@ -130,12 +158,18 @@ async def on_message(message):
         elif get(user.roles, name = 'AllowUnconnected'):
             return
         else:
-            await message.delete()
-            await message.author.send(f"You tried to type a message in invisible status, but you can't on this server. \nI give you the infos of your message. \nServer name : {guildname} \nChannel name : #{channelname} \nYour message was : {messagecontent} \n \nChange your status and send your message again :wink:")
-            await creator.send(f"{user} / {userid} tried to type a message in invisible status. \n Infos of the message. \n Server name : {guildname} \n Channel name : #{channelname} \n Date infos : {infojour} \n \n The message was : {messagecontent}")
-            print (f"{guildname}, {channelname}, {user}, {messagecontent}")
-            print (f"{infojour}")
+            if message.channel.permissions_for(message.guild.me).manage_messages:
+                await message.delete()
+                await message.author.send(f"You tried to type a message in invisible status, but you can't on this server. \nI give you the infos of your message. \nServer name : {guildname} \nChannel name : #{channelname} \nYour message was : {messagecontent} \n \nChange your status and send your message again :wink:")
+                await creator.send(f"{user} / {userid} tried to type a message in invisible status. \n Infos of the message. \n Server name : {guildname} \n Channel name : #{channelname} \n Date infos : {infojour} \n \n The message was : {messagecontent}")
+                print (f"{guildname}, {channelname}, {user}, {messagecontent}")
+                print (f"{infojour}")
+            else:
+                return
 
+for filename in os.listdir("./cogs"):
+    if filename.endswith('.py'):
+        client.load_extension(f"cogs.{filename[:-3]}")
 
 
 client.run('NTQzOTI0MDQ0MTEwNjI2ODI2.XxiT6Q.MNgj_W6MP7Vlg8fwH4DMM1iUEww')
