@@ -58,7 +58,7 @@ async def on_message(message):
     
     if message.content.startswith(')help'):
         embed = discord.Embed(title = "Help Command",
-                                  description = "The list of all commands available for users and/or admins.",
+                                  description = "The list of all commands available for users and/or admins.\nMy main utility is to avoid offline members to chat.",
                                   colour = discord.Colour.purple()
                                   )
         embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
@@ -70,6 +70,9 @@ async def on_message(message):
                         inline = False)
         embed.add_field(name = ")invite",
                         value = "Show all links that may be useful (for you and for me).\n**Can be used by all users**",
+                        inline = False)
+        embed.add_field(name = ")stats",
+                        value = "Show all stats of my bot and his TopGG page.\n**Can be used by all users**",
                         inline = False)
         embed.add_field(name = ")createrole",
                         value = 'Create a role named "AllowUnconnected" to give users the possibility of being able to speak on the server.\n**__Only admins__ can use this command and give the role to users**',
@@ -91,7 +94,7 @@ async def on_message(message):
         embed.add_field(name = ")help",
                         value = "[You can click on this link to see the bot page](https://top.gg/bot/543924044110626826)",
                         inline = False)
-        embed.set_image(url = "https://top.gg/api/widget/543924044110626826.png?usernamecolor=000000")
+        embed.set_image(url = "https://top.gg/api/widget/543924044110626826.png?usernamecolor=ffffff")
 
         await message.channel.send(embed = embed)
 
