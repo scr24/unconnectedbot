@@ -22,7 +22,7 @@ inv = discord.Status.offline
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Streaming(name=")help",
-                                                            url="https://www.twitch.tv/discord/"))
+                                                            url="https://www.twitch.tv/ps_racing_team/"))
     #for member in client.get_all_members():
     #    print(member, member.status)
     print("bot ready !!")
