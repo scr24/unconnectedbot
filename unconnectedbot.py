@@ -94,7 +94,7 @@ async def on_message(message):
         embed.add_field(name = "TopGG Page",
                         value = "[You can click on this link to see the bot page](https://top.gg/bot/543924044110626826)",
                         inline = False)
-        embed.set_image(url = "https://top.gg/api/widget/543924044110626826.png?usernamecolor=ffffff")
+        embed.set_image(url = "https://top.gg/api/widget/543924044110626826.svg?usernamecolor=ffffff")
 
         await message.channel.send(embed = embed)
 
