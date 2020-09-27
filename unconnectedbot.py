@@ -22,7 +22,7 @@ inv = discord.Status.offline
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Streaming(name=")help",
-                                                            url="https://www.twitch.tv/discord/"))
+                                                            url="https://www.twitch.tv/ps_racing_team/"))
 
     #for member in client.get_all_members():
     #    print(member, member.status)
@@ -60,7 +60,7 @@ async def on_message(message):
                                   description = "The list of all commands available for users and/or admins.\nMy main utility is to avoid offline members to chat.",
                                   colour = discord.Colour.purple()
                                   )
-        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
         embed.set_author (name = "Unconnected Bot#8157",
                           icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
@@ -86,7 +86,7 @@ async def on_message(message):
                                   description = "They are the stats of my bot",
                                   colour = discord.Colour.purple()
                                   )
-        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
         embed.set_author (name = "Unconnected Bot#8157",
                           icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
@@ -105,7 +105,7 @@ async def on_message(message):
                               description="For management, ideas I can code and others things to have a better bot",
                               colour = discord.Colour.purple()
                               )
-        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
         embed.set_author (name = "Unconnected Bot#8157",
                           icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
@@ -127,7 +127,7 @@ async def on_message(message):
                               description='**You already have a role named "__AllowUnconnected__". You can already give this role to whoever you want**',
                               colour = discord.Colour.red()
                               )
-                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
                 embed.set_author (name = "Unconnected Bot#8157",
                                   icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
@@ -140,7 +140,7 @@ async def on_message(message):
                               description='**The role "__AllowUnconnected__" has been created. You can now give this role to whoever you want so they can speak offline**',
                               colour = discord.Colour.green()
                               )
-                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
+                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
                 embed.set_author (name = "Unconnected Bot#8157",
                                   icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
