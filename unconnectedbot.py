@@ -31,6 +31,37 @@ async def on_guild_join(guild):
         if channel.permissions_for(guild.me).send_messages:
             await channel.send("Hi administrator of this server.\n\nI made my own server to help you if you need it, and to notify you of upcoming updates.\nYou can join my server with this link : https://discord.gg/gqfFqJp \n\nCordially : Creator of this bot.")
         break
+        
+@client.event
+async def on_voice_state_update(member, before, after):
+
+    guildname = member.guild.name
+    
+    user = member
+    userid = member.id
+    creator = client.get_user(341257685901246466)
+
+    vocalname = after.channel.name
+    
+    permissions = discord.Permissions()
+
+    infojour = datetime.datetime.now()
+
+    statut = member.status
+
+    if statut is discord.Status.offline:
+        if after.channel is not None :
+            if userid == int(341257685901246466):
+                return
+            elif user.guild_permissions.administrator:
+                return
+            elif get(user.roles, name = 'AllowUnconnected'):
+                return
+            else:
+                await member.move_to(None)
+                await member.send(f"You tried to connect to a vocal in invisible status, but you can't on this server. \nI give you the infos of your message. \nServer name : {guildname} \nVocal name : {vocalname} \n \nChange your status and try to connect again in the voice you want :wink:")
+                await creator.send(f"{user} / {userid} tried to connect to a vocal in invisible status. \nInfos of the message. \nServer name : {guildname} \nVocal name : {vocalname} \nDate infos : {infojour}")
+                print (f"{guildname}, {vocalname}, {user}, {userid} \n{infojour}")
 
 @client.event
 async def on_message(message):
@@ -157,37 +188,6 @@ async def on_message(message):
                 print (f"{infojour}")
             else:
                 return
-            
-@client.event
-async def on_voice_state_update(member, before, after):
-
-    guildname = member.guild.name
-    
-    user = member
-    userid = member.id
-    creator = client.get_user(341257685901246466)
-
-    vocalname = after.channel.name
-    
-    permissions = discord.Permissions()
-
-    infojour = datetime.datetime.now()
-
-    statut = member.status
-
-    if statut is discord.Status.offline:
-        if after.channel is not None :
-            if userid == int(341257685901246466):
-                return
-            elif user.guild_permissions.administrator:
-                return
-            elif get(user.roles, name = 'AllowUnconnected'):
-                return
-            else:
-                await member.move_to(None)
-                await member.send(f"You tried to connect to a vocal in invisible status, but you can't on this server. \nI give you the infos of your message. \nServer name : {guildname} \nVocal name : {vocalname} \n \nChange your status and try to connect again in the voice you want :wink:")
-                await creator.send(f"{user} / {userid} tried to connect to a vocal in invisible status. \nInfos of the message. \nServer name : {guildname} \nVocal name : {vocalname} \nDate infos : {infojour}")
-                print (f"{guildname}, {vocalname}, {user}, {userid} \n{infojour}")
             
 for filename in os.listdir("./cogs"):
     if filename.endswith('.py'):
