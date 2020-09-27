@@ -165,33 +165,5 @@ async def on_message(message):
             else:
                 return
 
-@client.event
-async def on_voice_state_update(member, before, after):
-
-    guildname = member.guild.name
-    
-    user = member
-    userid = member.id
-    creator = client.get_user(341257685901246466)
-
-    vocalname = after.channel.name
-
-    infojour = datetime.datetime.now()
-
-    statut = member.status
-
-    if statut is discord.Status.offline:
-        if after.channel is not None :
-            if userid == int(341257685901246466):
-                return
-            elif user.guild_permissions.administrator:
-                return
-            elif get(user.roles, name = 'AllowUnconnected'):
-                return
-            else:
-                await member.move_to(None)
-                await member.send(f"You tried to connect to a vocal in invisible status, but you can't on this server. \nI give you the infos of your message. \nServer name : {guildname} \nVocal name : {vocalname} \n \nChange your status and try to connect again in the voice you want :wink:")
-                await creator.send(f"{user} / {userid} tried to connect to a vocal in invisible status. \nInfos of the message. \nServer name : {guildname} \nVocal name : {vocalname} \nDate infos : {infojour}")
-                print (f"{guildname}, {vocalname}, {user}, {userid} \n{infojour}")
 
 client.run(TOKEN)
