@@ -22,7 +22,8 @@ inv = discord.Status.offline
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Streaming(name=")help",
-                                                            url="https://www.twitch.tv/ps_racing_team/"))
+                                                            url="https://www.twitch.tv/discord/"))
+
     #for member in client.get_all_members():
     #    print(member, member.status)
     print("bot ready !!")
@@ -45,8 +46,6 @@ async def on_message(message):
     user = message.author
     userid = message.author.id
     creator = client.get_user(341257685901246466)
-
-    permissions = discord.Permissions()
 
     infojour = datetime.datetime.now()
     
@@ -91,10 +90,10 @@ async def on_message(message):
                          text = "JeSuisUnBonWhisky#1688")
         embed.set_author (name = "Unconnected Bot#8157",
                           icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
-        embed.add_field(name = "TopGG Page",
+        embed.add_field(name = ")help",
                         value = "[You can click on this link to see the bot page](https://top.gg/bot/543924044110626826)",
                         inline = False)
-        embed.set_image(url = "https://top.gg/api/widget/543924044110626826.png")
+        embed.set_image(url = "https://top.gg/api/widget/543924044110626826.png?usernamecolor=ffffff")
 
         await message.channel.send(embed = embed)
 
@@ -169,6 +168,35 @@ async def on_message(message):
                 print (f"{infojour}")
             else:
                 return
+
+@client.event
+async def on_voice_state_update(member, before, after):
+
+    guildname = member.guild.name
+    
+    user = member
+    userid = member.id
+    creator = client.get_user(341257685901246466)
+
+    vocalname = after.channel.name
+
+    infojour = datetime.datetime.now()
+
+    statut = member.status
+
+    if statut is discord.Status.offline:
+        if after.channel is not None :
+            if userid == int(341257685901246466):
+                return
+            elif user.guild_permissions.administrator:
+                return
+            elif get(user.roles, name = 'AllowUnconnected'):
+                return
+            else:
+                await member.move_to(None)
+                await member.send(f"You tried to connect to a vocal in invisible status, but you can't on this server. \nI give you the infos of your message. \nServer name : {guildname} \nVocal name : {vocalname} \n \nChange your status and try to connect again in the voice you want :wink:")
+                await creator.send(f"{user} / {userid} tried to connect to a vocal in invisible status. \nInfos of the message. \nServer name : {guildname} \nVocal name : {vocalname} \nDate infos : {infojour}")
+                print (f"{guildname}, {vocalname}, {user}, {userid} \n{infojour}")
 
 for filename in os.listdir("./cogs"):
     if filename.endswith('.py'):
