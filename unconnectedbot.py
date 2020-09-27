@@ -10,10 +10,13 @@ from discord.utils import get
 import os
 import dbl
 import logging
+
 client = commands.Bot(command_prefix = ')')
+
 on = discord.Status.online
 dnd = discord.Status.dnd
 inv = discord.Status.offline
+
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Streaming(name=")help",
@@ -21,12 +24,14 @@ async def on_ready():
     #for member in client.get_all_members():
     #    print(member, member.status)
     print("bot ready !!")
+
 @client.event
 async def on_guild_join(guild):
     for channel in guild.text_channels:
         if channel.permissions_for(guild.me).send_messages:
             await channel.send("Hi administrator of this server.\n\nI made my own server to help you if you need it, and to notify you of upcoming updates.\nYou can join my server with this link : https://discord.gg/gqfFqJp \n\nCordially : Creator of this bot.")
         break
+
 @client.event
 async def on_message(message):
     
@@ -152,6 +157,7 @@ async def on_message(message):
                 print (f"{infojour}")
             else:
                 return
+            
 for filename in os.listdir("./cogs"):
     if filename.endswith('.py'):
         client.load_extension(f"cogs.{filename[:-3]}")
