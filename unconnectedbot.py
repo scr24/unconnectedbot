@@ -7,31 +7,26 @@ import datetime
 from datetime import timezone, tzinfo, timedelta
 import time as timeModule
 from discord.utils import get
+import os
 import dbl
 import logging
-import os
-
-TOKEN = 'NzAyNTUyNjQ5MDQzNTQyMDE3.XqBtLA.MYFYgmArGIv9u2SELI0MWcJSGgk'
-
-client = commands.Bot(command_prefix = '+')
-
+client = commands.Bot(command_prefix = ')')
+on = discord.Status.online
+dnd = discord.Status.dnd
+inv = discord.Status.offline
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Streaming(name=")help",
                                                             url="https://www.twitch.tv/ps_racing_team/"))
-
     #for member in client.get_all_members():
     #    print(member, member.status)
     print("bot ready !!")
-
 @client.event
 async def on_guild_join(guild):
     for channel in guild.text_channels:
         if channel.permissions_for(guild.me).send_messages:
             await channel.send("Hi administrator of this server.\n\nI made my own server to help you if you need it, and to notify you of upcoming updates.\nYou can join my server with this link : https://discord.gg/gqfFqJp \n\nCordially : Creator of this bot.")
         break
-
-
 @client.event
 async def on_message(message):
     
@@ -42,21 +37,22 @@ async def on_message(message):
     user = message.author
     userid = message.author.id
     creator = client.get_user(341257685901246466)
-
+    
+    permissions = discord.Permissions()
+    
     infojour = datetime.datetime.now()
     
     messagecontent = message.content
     
     statut = message.author.status
-
     embed = discord.Embed()
     
     if message.content.startswith(')help'):
         embed = discord.Embed(title = "Help Command",
-                                  description = "The list of all commands available for users and/or admins.\nMy main utility is to avoid offline members to chat and to connect in vocal in offline mode.",
+                                  description = "The list of all commands available for users and/or admins.\nMy main utility is to avoid offline members to chat.",
                                   colour = discord.Colour.purple()
                                   )
-        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
+        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
         embed.set_author (name = "Unconnected Bot#8157",
                           icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
@@ -74,22 +70,20 @@ async def on_message(message):
                         inline = False)
         
         await message.channel.send(embed = embed)
-
         
-
     if message.content.startswith(')stats'):
         embed = discord.Embed(title = "Stats Command",
                                   description = "They are the stats of my bot",
                                   colour = discord.Colour.purple()
                                   )
-        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
+        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
         embed.set_author (name = "Unconnected Bot#8157",
                           icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
-        embed.add_field(name = ")help",
+        embed.add_field(name = "TopGG Page",
                         value = "[You can click on this link to see the bot page](https://top.gg/bot/543924044110626826)",
                         inline = False)
-        embed.set_image(url = "https://top.gg/api/widget/543924044110626826.png?usernamecolor=ffffff")
+        embed.set_image(url = "https://top.gg/api/widget/543924044110626826.png")
 
         await message.channel.send(embed = embed)
 
@@ -101,7 +95,7 @@ async def on_message(message):
                               description="For management, ideas I can code and others things to have a better bot",
                               colour = discord.Colour.purple()
                               )
-        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
+        embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
         embed.set_author (name = "Unconnected Bot#8157",
                           icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
@@ -113,9 +107,7 @@ async def on_message(message):
                         inline = True)
     
         await message.channel.send(embed = embed)
-
         
-
     if message.content.startswith(')createrole'):
         if user.guild_permissions.administrator:
             if get(message.guild.roles, name = 'AllowUnconnected'):
@@ -123,11 +115,10 @@ async def on_message(message):
                               description='**You already have a role named "__AllowUnconnected__". You can already give this role to whoever you want**',
                               colour = discord.Colour.red()
                               )
-                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
+                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
                 embed.set_author (name = "Unconnected Bot#8157",
                                   icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
-
                 await message.channel.send(embed = embed)
         
             else :
@@ -136,16 +127,13 @@ async def on_message(message):
                               description='**The role "__AllowUnconnected__" has been created. You can now give this role to whoever you want so they can speak offline**',
                               colour = discord.Colour.green()
                               )
-                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
+                embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/83a72d7485fe313cd0f0141f0b221943.png?size=4096",
                          text = "JeSuisUnBonWhisky#1688")
                 embed.set_author (name = "Unconnected Bot#8157",
                                   icon_url = 'https://cdn.discordapp.com/avatars/543924044110626826/1341bf81b2289bf25bd0e5de2aafbad2.png?size=4096')
-
                 await message.channel.send(embed = embed)
         else :
             return
-
-
         
     
     if statut is discord.Status.offline:
@@ -164,6 +152,8 @@ async def on_message(message):
                 print (f"{infojour}")
             else:
                 return
-
-
-client.run(TOKEN)
+for filename in os.listdir("./cogs"):
+    if filename.endswith('.py'):
+        client.load_extension(f"cogs.{filename[:-3]}")
+        
+client.run('NTQzOTI0MDQ0MTEwNjI2ODI2.XxiT6Q.MNgj_W6MP7Vlg8fwH4DMM1iUEww')
