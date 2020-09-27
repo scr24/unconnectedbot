@@ -7,17 +7,13 @@ import datetime
 from datetime import timezone, tzinfo, timedelta
 import time as timeModule
 from discord.utils import get
-import os
 import dbl
 import logging
+import os
 
+TOKEN = 'NzAyNTUyNjQ5MDQzNTQyMDE3.XqBtLA.MYFYgmArGIv9u2SELI0MWcJSGgk'
 
-client = commands.Bot(command_prefix = ')')
-
-on = discord.Status.online
-dnd = discord.Status.dnd
-inv = discord.Status.offline
-
+client = commands.Bot(command_prefix = '+')
 
 @client.event
 async def on_ready():
@@ -57,7 +53,7 @@ async def on_message(message):
     
     if message.content.startswith(')help'):
         embed = discord.Embed(title = "Help Command",
-                                  description = "The list of all commands available for users and/or admins.\nMy main utility is to avoid offline members to chat.",
+                                  description = "The list of all commands available for users and/or admins.\nMy main utility is to avoid offline members to chat and to connect in vocal in offline mode.",
                                   colour = discord.Colour.purple()
                                   )
         embed.set_footer(icon_url = "https://cdn.discordapp.com/avatars/341257685901246466/6a2c7949778597a955eba4e9585b7a63.png?size=4096",
@@ -198,10 +194,4 @@ async def on_voice_state_update(member, before, after):
                 await creator.send(f"{user} / {userid} tried to connect to a vocal in invisible status. \nInfos of the message. \nServer name : {guildname} \nVocal name : {vocalname} \nDate infos : {infojour}")
                 print (f"{guildname}, {vocalname}, {user}, {userid} \n{infojour}")
 
-            
-for filename in os.listdir("./cogs"):
-    if filename.endswith('.py'):
-        client.load_extension(f"cogs.{filename[:-3]}")
-
-
-client.run('NTQzOTI0MDQ0MTEwNjI2ODI2.XxiT6Q.MNgj_W6MP7Vlg8fwH4DMM1iUEww')
+client.run(TOKEN)
