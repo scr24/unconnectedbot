@@ -198,6 +198,7 @@ async def on_voice_state_update(member, before, after):
                 await creator.send(f"{user} / {userid} tried to connect to a vocal in invisible status. \nInfos of the message. \nServer name : {guildname} \nVocal name : {vocalname} \nDate infos : {infojour}")
                 print (f"{guildname}, {vocalname}, {user}, {userid} \n{infojour}")
 
+            
 for filename in os.listdir("./cogs"):
     if filename.endswith('.py'):
         client.load_extension(f"cogs.{filename[:-3]}")
