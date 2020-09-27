@@ -51,11 +51,11 @@ async def on_voice_state_update(member, before, after):
 
     if statut is discord.Status.offline:
         if after.channel is not None :
-            if userid == int(341257685901246466):
-                return
-            elif user.guild_permissions.administrator:
-                return
-            elif get(user.roles, name = 'AllowUnconnected'):
+            #if userid == int(341257685901246466):
+            #    return
+            #elif user.guild_permissions.administrator:
+            #    return
+            if get(user.roles, name = 'AllowUnconnected'):
                 return
             else:
                 await member.move_to(None)
@@ -173,11 +173,11 @@ async def on_message(message):
         
     
     if statut is discord.Status.offline:
-        if userid == int(341257685901246466):
-            return
-        elif user.guild_permissions.administrator:
-            return
-        elif get(user.roles, name = 'AllowUnconnected'):
+        #if userid == int(341257685901246466):
+        #    return
+        #elif user.guild_permissions.administrator:
+        #    return
+        if get(user.roles, name = 'AllowUnconnected'):
             return
         else:
             if message.channel.permissions_for(message.guild.me).manage_messages:
