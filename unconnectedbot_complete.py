@@ -18,7 +18,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 intents = discord.Intents(members=True, guilds=True, voice_states=True, presences=True, messages=True, reactions=True)
 
 
-TOKEN = 'NTQzOTI0MDQ0MTEwNjI2ODI2.XF9WvQ.5KjU6mELDWLZ_l3539vvGrB-SaY'
+TOKEN = 'blah blah TOKEN used'
 
 client = commands.Bot(command_prefix = ')', intents=intents)
 client.remove_command('help')
