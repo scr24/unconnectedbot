@@ -83,7 +83,7 @@ class unvocal(commands.Cog):
             if after.channel is None:
                 return
             elif after.channel is not None:
-                if statut is discord.Status.offline:
+                if statut is discord.Status.offline or statut is discord.Status.Idle or statut is discord.Status.DoNotDisturb:
                     cursor.execute(f"SELECT bypassrole FROM main WHERE guild_id = {member.guild.id}")
                     bpresult = cursor.fetchone()
                     if str(bpresult) == "(None,)" or str(bpresult) == "None":
