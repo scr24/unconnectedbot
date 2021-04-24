@@ -87,7 +87,7 @@ class unmessage(commands.Cog):
 
         try:
             statut = user.status
-            if statut is discord.Status.offline:
+            if statut is discord.Status.offline or statut is discord.Status.Idle or statut is discord.Status.DoNotDisturb:
                 db = sqlite3.connect("main.sqlite")
                 cursor = db.cursor()
                 cursor.execute(f"SELECT bypassrole FROM main WHERE guild_id = {message.guild.id}")
